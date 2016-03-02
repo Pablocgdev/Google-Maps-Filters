@@ -4,13 +4,13 @@
 	<!-- Set meta tag to bootstrap responsive -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Set charset to UTF-8 for avoiding accentuation troubleshooting -->
-	<meta charset="UTF-8"> 
+	<meta charset="UTF-8">
 	<title>Maps API</title>
 	<!-- Bootstrap minified CSS -->
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-	<!--Temporary google maps API only used for showing it on the template 
+	<!--Temporary google maps API only used for showing it on the template
 	delete as well JS import for the map.-->
-	
+
 	<script src="js/FuncionesParaApi.js"></script>
 </head>
 <body>
@@ -21,38 +21,141 @@
 		<div class="row">
 			<!-- Div MAP (must delete only for template purposes -->
 			<div class="col-sm-6" id="map" style="display: block; height: 400px;"></div>
-			<!-- Div ciudades -->
-			<div class="col-sm-2" id="ciudades">
-				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Escriba una lugar</strong> 
+			<!-- Div parametros -->
+			<div class="col-sm-6">
+				<div class="row">
+					<!-- Div ciudades -->
+					<div class="col-sm-4" id="divCity">
+						<div class="alert alert-info">
+							<strong>Enter a place:</strong>
+						</div>
+						<input id="pac-input" class="form-control" type="text" placeholder="Busca tu ciudad">
+					</div>
+					<!-- Div types -->
+					<div class="col-sm-4" id="divTypes">
+						<div class="alert alert-info">
+							<strong>Select a type:</strong>
+						</div>
+						<select id="types" class="form-control">
+							<option value=""></option>
+							<option value="accounting">contabilidad</option>
+							<option value="airport">aeropuerto</option>
+							<option value="amusement_park">parque de atracciones</option>
+							<option value="aquarium">acuario</option>
+							<option value="art_gallery">galería de arte</option>
+							<option value="atm">Cajero automático</option>
+							<option value="bakery">panadería</option>
+							<option value="bank">banco</option>
+							<option value="bar">bar</option>
+							<option value="beauty_salon">salón de belleza</option>
+							<option value="bicycle_store">tienda bicicleta</option>
+							<option value="book_store">librería</option>
+							<option value="bowling_alley">bolera</option>
+							<option value="bus_station">estación de autobuses</option>
+							<option value="cafe">cafetería</option>
+							<option value="campground">terreno de camping</option>
+							<option value="car_dealer">vendedor de autos</option>
+							<option value="car_rental">alquiler de coches</option>
+							<option value="car_repair">reparación de autos</option>
+							<option value="car_wash">lavadero de coche</option>
+							<option value="casino">casino</option>
+							<option value="cemetery">cementerio</option>
+							<option value="church">iglesia</option>
+							<option value="city_hall">ayuntamiento</option>
+							<option value="clothing_store">tienda de ropa</option>
+							<option value="convenience_store">Tienda de conveniencia</option>
+							<option value="courthouse">palacio de justicia</option>
+							<option value="dentist">dentista</option>
+							<option value="department_store">grandes almacenes</option>
+							<option value="doctor">doctor</option>
+							<option value="electrician">electricista</option>
+							<option value="electronics_store">tienda de electrónica</option>
+							<option value="embassy">embajada</option>
+							<option value="establishment">establecimiento</option>
+							<option value="finance">finanzas</option>
+							<option value="fire_station">estación de bomberos</option>
+							<option value="florist">florista</option>
+							<option value="food">comida</option>
+							<option value="funeral_home">casa funeraria</option>
+							<option value="furniture_store">tienda de muebles</option>
+							<option value="gas_station">gasolinera</option>
+							<option value="general_contractor">contratista general</option>
+							<option value="grocery_or_supermarket">tienda de comestibles o supermercado</option>
+							<option value="gym">gimnasio</option>
+							<option value="hair_care">peluquería</option>
+							<option value="hardware_store">ferretería</option>
+							<option value="health">salud</option>
+							<option value="hindu_temple">templo hindú</option>
+							<option value="home_goods_store">tienda de artículos para el hogar</option>
+							<option value="hospital">hospital</option>
+							<option value="insurance_agency">agencia de seguros</option>
+							<option value="jewelry_store">joyería</option>
+							<option value="laundry">lavandería</option>
+							<option value="lawyer">abogado</option>
+							<option value="library">biblioteca</option>
+							<option value="liquor_store">tienda de licor</option>
+							<option value="local_government_office">oficina del gobierno local</option>
+							<option value="locksmith">cerrajero</option>
+							<option value="lodging">alojamiento</option>
+							<option value="meal_delivery">entrega de comida</option>
+							<option value="meal_takeaway">comida para llevar</option>
+							<option value="mosque">mezquita</option>
+							<option value="movie_rental">alquiler de películas</option>
+							<option value="movie_theater">cine</option>
+							<option value="moving_company">empresa de mudanzas</option>
+							<option value="museum">museo</option>
+							<option value="night_club">club nocturno</option>
+							<option value="painter">pintor</option>
+							<option value="park">parque</option>
+							<option value="parking">estacionamiento</option>
+							<option value="pet_store">tienda de mascotas</option>
+							<option value="pharmacy">farmacia</option>
+							<option value="physiotherapist">fisioterapeuta</option>
+							<option value="place_of_worship">lugar de adoración</option>
+							<option value="plumber">fontanero</option>
+							<option value="police">policía</option>
+							<option value="post_office">correos</option>
+							<option value="real_estate_agency">agencia inmobiliaria</option>
+							<option value="restaurant">restaurante</option>
+							<option value="roofing_contractor">contratista de techos</option>
+							<option value="rv_park">parque de vehículos de recreo</option>
+							<option value="school">colegio</option>
+							<option value="shoe_store">zapatería</option>
+							<option value="shopping_mall">centro comercial</option>
+							<option value="spa">SPA</option>
+							<option value="stadium">estadio</option>
+							<option value="storage">almacen</option>
+							<option value="store">tienda</option>
+							<option value="subway_station">estación de metro</option>
+							<option value="synagogue">sinagoga</option>
+							<option value="taxi_stand">parada de taxi</option>
+							<option value="train_station">estación de tren</option>
+							<option value="travel_agency">agencia de viajes</option>
+							<option value="university">universidad</option>
+							<option value="veterinary_care">cuidado veterinario</option>
+							<option value="zoo">Zoo</option>
+						</select>
+					</div>
+					<!-- Div keyword -->
+					<div class="col-sm-4" id="divKeyword">
+						<div class="alert alert-info">
+							<strong>Enter your keywords</strong>
+						</div>
+						<input id="keyword" class="form-control" type="text" placeholder="Añade palabras claves">
+					</div>
 				</div>
-				<input id="pac-input" class="form-control" type="text" placeholder="Busca tu ciudad">
-			</div>
-			<!-- Div Cities -->
-			<div class="col-sm-2" id="cities">
-				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Seleccione a city.</strong> 
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-3" id="divRange">
+						<div class="alert alert-info">
+							<strong>Range radius</strong>
+						</div>
+						<input type="range" id="radius" class="form-control" value="3" min="1" max="5" step="" required="required" title="">
+					</div>
 				</div>
-				<input id="categoria" class="form-control" type="text" placeholder="Busca lo que deseas">
-			</div>
-			<!-- Div Filter -->
-			<div class="col-sm-2" id="filter">
-				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Select your filter.</strong> 
-				</div>
-				<button type="button" class="btn btn-default" onclick="busquedaSitios()">Buscar</button>
-			</div>
-			<div class="col-sm-2" id="filter">
-				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Select your filter.</strong> 
-				</div>
-				<div class="col-sm-12" id="range">
-				<strong>Range radius</strong>
-				<input type="range" id="radius" class="form-control" value="3" min="1" max="5" step="" required="required" title="">
+				<div  class="row">
+					<div class="col-sm-4 col-sm-offset-4" >
+						<button type="button" class="btn btn-primary btn-lg center-block" onclick="busquedaSitios()">Buscar</button>
+					</div>
 				</div>
 			</div>
 		</div>
