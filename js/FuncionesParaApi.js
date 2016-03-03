@@ -1,13 +1,9 @@
-
-
 var map;
 var searchBox;
 var input;
 var input2;
 var markers = [];
 var markersBusqueda = [];
-
-
 
 
 function initAutocomplete() {
@@ -17,6 +13,28 @@ function initAutocomplete() {
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
+
+
+  // Posiciona el mapa en la ubicación del usuario
+  var infoWindow = new google.maps.InfoWindow({map: map});
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('Estás aquí.');
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+
    
   // Crea el searchBox y lo linkea con el input
   input = document.getElementById('pac-input');
@@ -41,7 +59,7 @@ function initAutocomplete() {
       return;
     }
 
-    // Limpia lo viejos marcadores
+    // Limpia los viejos marcadores
     markers.forEach(function(marker) {
       marker.setMap(null);
     });
@@ -82,7 +100,7 @@ function initAutocomplete() {
 
 function busquedaSitios(){
 
-  // Limpia lo viejos marcadores de la anterior busqueda
+  // Limpia los viejos marcadores de la anterior busqueda
     markersBusqueda.forEach(function(marker) {
       marker.setMap(null);
     });
@@ -96,7 +114,6 @@ function busquedaSitios(){
   //var busqueda=searchBox.getPlaces();
   //var location=busqueda[0];
 
-
   var radius=document.getElementById('radius').value;
   radius*=1000;
   // obtengo la posicion del marcador
@@ -106,7 +123,7 @@ function busquedaSitios(){
   // para darsela al metodo nearbysearch en location:
 
   // para la info de los markers
-  var infowindow = new google.maps.InfoWindow();
+  var infowindows = new google.maps.InfoWindow();
 
   // hace la busqueda con los parametros que le indicamos
   var service = new google.maps.places.PlacesService(map);
@@ -115,7 +132,6 @@ function busquedaSitios(){
     radius: radius,
     keyword: input2
   }, callback);
-
 
   // recibe los resultado y crea todos los marcadores en el mapa
   function callback(results, status) {
@@ -138,13 +154,16 @@ function busquedaSitios(){
 
     // en el click de los markers le pone las ventanas de info
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent(place.name);
-      infowindow.open(map, this);
+      infowindows.setContent(place.name);
+      infowindows.open(map, this);
     });
   }
-
-
 }
 
 
-    
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+}

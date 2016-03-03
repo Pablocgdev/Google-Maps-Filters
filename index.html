@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Set charset to UTF-8 for avoiding accentuation troubleshooting -->
 	<meta charset="UTF-8"> 
-	<title>Maps API</title>
+	<title>Google Places API</title>
 	<!-- Bootstrap minified CSS -->
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<!--Temporary google maps API only used for showing it on the template 
@@ -16,44 +16,37 @@
 <body>
 	<!-- Responsive container -->
 	<div class="container-fluid">
-		<h1>Google Maps Filter</h1>
-		<h3>Filter and find restaurants, gas stations and many more.</h3>
+		<h1>Búsqueda con Google Places</h1>
+		<h3>Filtra y busca por restaurantes, gasolineras y más!</h3>
 		<div class="row">
 			<!-- Div MAP (must delete only for template purposes -->
 			<div class="col-sm-6" id="map" style="display: block; height: 400px;"></div>
 			<!-- Div ciudades -->
 			<div class="col-sm-2" id="ciudades">
 				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Escriba una lugar</strong> 
+					<strong>Escriba una lugar.</strong> 
 				</div>
 				<input id="pac-input" class="form-control" type="text" placeholder="Busca tu ciudad">
+				<br>
 			</div>
-			<!-- Div Cities -->
-			<div class="col-sm-2" id="cities">
+			<!-- Div categorias -->
+			<div class="col-sm-2" id="categorias">
 				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Seleccione a city.</strong> 
+					<strong>¿Qué local desea buscar?</strong> 
 				</div>
 				<input id="categoria" class="form-control" type="text" placeholder="Busca lo que deseas">
+				<br>
+			</div>
+			<div class="col-sm-2" id="alcance">
+				<div class="alert alert-info">
+					<strong>Alcance de la búsqueda.</strong> 
+				</div>
+				<input type="range" id="radius" class="form-control" value="3" min="1" max="5" step="1" required="required" title="">
+				<br>
 			</div>
 			<!-- Div Filter -->
-			<div class="col-sm-2" id="filter">
-				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Select your filter.</strong> 
-				</div>
+			<div class="col-sm-2" id="buscar">
 				<button type="button" class="btn btn-default" onclick="busquedaSitios()">Buscar</button>
-			</div>
-			<div class="col-sm-2" id="filter">
-				<div class="alert alert-info">
-					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-					<strong>Select your filter.</strong> 
-				</div>
-				<div class="col-sm-12" id="range">
-				<strong>Range radius</strong>
-				<input type="range" id="radius" class="form-control" value="3" min="1" max="5" step="" required="required" title="">
-				</div>
 			</div>
 		</div>
 	</div>
