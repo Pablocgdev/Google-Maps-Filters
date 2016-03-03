@@ -16,6 +16,7 @@ function initAutocomplete() {
 
 
   // Posiciona el mapa en la ubicación del usuario
+  // Activar para errores 
   var infoWindow = new google.maps.InfoWindow({map: map});
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
@@ -32,7 +33,7 @@ function initAutocomplete() {
     });
   } else {
     // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
+     handleLocationError(false, infoWindow, map.getCenter());
   }
 
 
@@ -73,8 +74,6 @@ function initAutocomplete() {
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
-
-        
       };
 
       // Crea el marcador por cada sitio
@@ -167,7 +166,7 @@ function busquedaSitios(){
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
+                        'No se ha podido detectar su localización.' :
+                        'Tu navegador no soporta localización.');
 }
 
