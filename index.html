@@ -8,31 +8,37 @@
 	<title>Maps API</title>
 	<!-- Bootstrap minified CSS -->
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-	<!--Temporary google maps API only used for showing it on the template
-	delete as well JS import for the map.-->
-
+	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/radius.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/FuncionesParaApi.js"></script>
 </head>
 <body>
+	<!-- Jumbotron -->
+	<div class="jumbotron fill-jumbotron">
+		<div class="container" id="outer">
+			<h1 align="center" id="mapsHead">Google Maps Filter</h1>
+			<div id="map"></div>
+		</div>
+	</div>
+
+	<!--<button data-toggle="collapse" data-target="#collapsingdiv" class="btn btn-info">Filtros</button>-->
 	<!-- Responsive container -->
 	<div class="container-fluid">
-		<h1>Google Maps Filter</h1>
-		<h3>Filter and find restaurants, gas stations and many more.</h3>
 		<div class="row">
-			<!-- Div MAP (must delete only for template purposes -->
-			<div class="col-sm-6" id="map" style="display: block; height: 400px;"></div>
-			<!-- Div parametros -->
-			<div class="col-sm-6">
+			<!-- DIV filter collapsing must remove "in" to get collapsed default load-->
+			<div class="col-sm-6 col-lg-12 panel-collapse collapse-in" id="collapsingdiv">
 				<div class="row">
 					<!-- Div ciudades -->
-					<div class="col-sm-4" id="divCity">
+					<div class="col-sm-3" id="divCity">
 						<div class="alert alert-info">
 							<strong>Enter a place:</strong>
 						</div>
 						<input id="pac-input" class="form-control" type="text" placeholder="Busca tu ciudad">
 					</div>
 					<!-- Div types -->
-					<div class="col-sm-4" id="divTypes">
+					<div class="col-sm-3" id="divTypes">
 						<div class="alert alert-info">
 							<strong>Select a type:</strong>
 						</div>
@@ -137,34 +143,38 @@
 						</select>
 					</div>
 					<!-- Div keyword -->
-					<div class="col-sm-4" id="divKeyword">
+					<div class="col-sm-3" id="divKeyword">
 						<div class="alert alert-info">
 							<strong>Enter your keywords</strong>
 						</div>
 						<input id="keyword" class="form-control" type="text" placeholder="Añade palabras claves">
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6 col-sm-offset-3" id="divRange">
+					<div class="col-sm-3" id="divRange">
 						<div class="alert alert-info">
 							<strong>Range radius</strong>
 						</div>
-						<input type="range" id="radius" class="form-control" value="3" min="1" max="5" step="" required="required" title="">
+						<!--<input type="range" id="radius" class="form-control" value="3" min="1" max="5" step="" required="required" title="">-->
+						
+						<!-- TEST TEST TEST -->
+
+						<div class="range range-info">
+							<input type="range" name="range" min="1" max="5" value="3" onchange="rangeSuccess.value=value" id="radius">
+							<output id="rangeSuccess">3</output>
+						</div>
+
+
 					</div>
-				</div>
-				<div  class="row">
-					<div class="col-sm-4 col-sm-offset-4" >
-						<button type="button" class="btn btn-primary btn-lg center-block" onclick="busquedaSitios()">Buscar</button>
+					<div  class="row">
+						<div class="col-sm-4 col-sm-offset-4" >
+							<button type="button" class="btn btn-primary btn-lg center-block btn-submit" onclick="busquedaSitios()">Buscar</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<!-- jQuery (temporary until local files are installed) -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtDEGz6Le0J87mr5wtjn87FMI0j_jIhY0&libraries=places&callback=initAutocomplete"
-         async defer></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtDEGz6Le0J87mr5wtjn87FMI0j_jIhY0&libraries=places&callback=initAutocomplete"
+		async defer></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
+	</body>
+	</html>
