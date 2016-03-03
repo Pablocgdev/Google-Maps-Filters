@@ -73,6 +73,8 @@ function initAutocomplete() {
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
         scaledSize: new google.maps.Size(25, 25)
+
+        
       };
 
       // Crea el marcador por cada sitio
