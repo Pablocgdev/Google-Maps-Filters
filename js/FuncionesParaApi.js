@@ -1,7 +1,7 @@
 var map;
 var searchBox;
 var input;
-var input2;
+var selectTypes;
 var markers = [];
 var markersBusqueda = [];
 
@@ -35,26 +35,25 @@ function initAutocomplete() {
     handleLocationError(false, infoWindow, map.getCenter());
   }
 
-   
+
   // Crea el searchBox y lo linkea con el input
   input = document.getElementById('pac-input');
   searchBox = new google.maps.places.SearchBox(input);
 
   //Esto es para poner el input de busqueda dentro del mapa
-  //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input); 
+  //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Cuando hay cambios te va mostrando las sugerencias
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
 
-  
-  
-  // Detecta el evento cuando el usuario selecciona 
+
+  // Detecta el evento cuando el usuario selecciona
   // una predicción y recuperar más detalles sobre ese lugar.
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
-    
+
     if (places.length == 0) {
       return;
     }
@@ -107,12 +106,14 @@ function busquedaSitios(){
     markersBusqueda = [];
 
   // obtengo la categoria o palabra para la busqueda
-  // se la indica en keyword: del metodo nearbysearch() 
-  var input2=document.getElementById('categoria').value;
+  // se la indica en keyword: del metodo nearbysearch()
+  var selectTypes=document.getElementById('types').value;
 
-  //obtengo el lugar escogido en el input de autocompletar
-  //var busqueda=searchBox.getPlaces();
-  //var location=busqueda[0];
+  // obtengo la categoria o palabra para la busqueda
+  // se la indica en keyword: del metodo nearbysearch()
+  var inputKeyword=document.getElementById('keyword').value;
+
+  inputKeyword = selectTypes + " " + inputKeyword;
 
   var radius=document.getElementById('radius').value;
   radius*=1000;
@@ -130,7 +131,7 @@ function busquedaSitios(){
   service.nearbySearch({
     location: marker,
     radius: radius,
-    keyword: input2
+    keyword: inputKeyword
   }, callback);
 
   // recibe los resultado y crea todos los marcadores en el mapa
@@ -143,7 +144,7 @@ function busquedaSitios(){
   }
 
   function createMarker(place) {
-    
+
     var placeLoc = place.geometry.location;
     var marker= new google.maps.Marker({
       map: map,
