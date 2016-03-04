@@ -29,3 +29,8 @@ background: url('../assets/images/city2.jpg') no-repeat center center;
 	margin-top:10px;
 	margin-bottom: 0px;
 }
+
+.btn-form{
+	margin-top:5px;
+	margin-bottom:10px;
+}

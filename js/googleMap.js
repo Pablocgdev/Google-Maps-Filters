@@ -3,7 +3,7 @@ var searchBox;
 var input;
 var selectTypes;
 var markers = [];
-var markersBusqueda = [];
+var maerkersSearch = [];
 
 
 function initAutocomplete() {
@@ -15,8 +15,8 @@ function initAutocomplete() {
   });
 
 
-  // Posiciona el mapa en la ubicación del usuario
-  // Activar para errores 
+  // Map positioning using geolocation.
+  // Initialize errors.
   var infoWindow = new google.maps.InfoWindow({map: map});
   // Try HTML5 geolocation.
   if (navigator.geolocation) {
@@ -37,21 +37,20 @@ function initAutocomplete() {
   }
 
 
-  // Crea el searchBox y lo linkea con el input
+  // Create searchbox and link to input.
   input = document.getElementById('pac-input');
   searchBox = new google.maps.places.SearchBox(input);
 
-  //Esto es para poner el input de busqueda dentro del mapa
+  // Search input inside the map.
   //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  // Cuando hay cambios te va mostrando las sugerencias
+  // Refresh predictions.
   map.addListener('bounds_changed', function() {
     searchBox.setBounds(map.getBounds());
   });
 
 
-  // Detecta el evento cuando el usuario selecciona
-  // una predicción y recuperar más detalles sobre ese lugar.
+  // Details when user selects a prediction.
   searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
 
@@ -59,13 +58,13 @@ function initAutocomplete() {
       return;
     }
 
-    // Limpia los viejos marcadores
+    // Clear old markers.
     markers.forEach(function(marker) {
       marker.setMap(null);
     });
     markers = [];
 
-    // Para cada lugar obtiene el icono, el nombre y la ubicación.
+    // Icon, name an location of places.
     var bounds = new google.maps.LatLngBounds();
     places.forEach(function(place) {
       var icon = {
@@ -76,7 +75,7 @@ function initAutocomplete() {
         scaledSize: new google.maps.Size(25, 25)
       };
 
-      // Crea el marcador por cada sitio
+      // Create markers for every location.
       markers.push(new google.maps.Marker({
         map: map,
         icon: icon,
@@ -100,34 +99,26 @@ function initAutocomplete() {
 
 function busquedaSitios(){
 
-  // Limpia los viejos marcadores de la anterior busqueda
-    markersBusqueda.forEach(function(marker) {
+  // Clear old search markers.
+    maerkersSearch.forEach(function(marker) {
       marker.setMap(null);
     });
-    markersBusqueda = [];
+    maerkersSearch = [];
 
-  // obtengo la categoria o palabra para la busqueda
-  // se la indica en keyword: del metodo nearbysearch()
   var selectTypes=document.getElementById('types').value;
-
-  // obtengo la categoria o palabra para la busqueda
-  // se la indica en keyword: del metodo nearbysearch()
   var inputKeyword=document.getElementById('keyword').value;
 
   inputKeyword = selectTypes + " " + inputKeyword;
 
   var radius=document.getElementById('radius').value;
   radius*=1000;
-  // obtengo la posicion del marcador
+  // Markers position.
   var marker=markers[0].getPosition();
 
-  // location.geometry.location -> esta es la lat y long del lugar escogido
-  // para darsela al metodo nearbysearch en location:
-
-  // para la info de los markers
+  // Markers InfoWindow.
   var infowindows = new google.maps.InfoWindow();
 
-  // hace la busqueda con los parametros que le indicamos
+  // Custom search with user preferences.
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: marker,
@@ -135,7 +126,7 @@ function busquedaSitios(){
     keyword: inputKeyword
   }, callback);
 
-  // recibe los resultado y crea todos los marcadores en el mapa
+  // Create markers.
   function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < results.length; i++) {
@@ -151,10 +142,10 @@ function busquedaSitios(){
       map: map,
       position: place.geometry.location
     })
-    // los meto en un array para eliminarlo con cada nueva busqueda
-    markersBusqueda.push(marker);
+    // Push them to an array for deleting when refreshing the search.
+    maerkersSearch.push(marker);
 
-    // en el click de los markers le pone las ventanas de info
+    // Maker info on click.
     google.maps.event.addListener(marker, 'click', function() {
       infowindows.setContent(place.name);
       infowindows.open(map, this);
