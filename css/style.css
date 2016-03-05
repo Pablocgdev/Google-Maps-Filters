@@ -34,3 +34,6 @@ background: url('../assets/images/city2.jpg') no-repeat center center;
 	margin-top:5px;
 	margin-bottom:10px;
 }
+#alertCat{
+	color:red;
+}

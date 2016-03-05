@@ -105,8 +105,9 @@ function busquedaSitios(){
     });
     maerkersSearch = [];
 
-  var selectTypes=document.getElementById('types').value;
+  var search=document.getElementById('types').value;
   var inputKeyword=document.getElementById('keyword').value;
+  var alertType=document.getElementById('alertCat').innerHTML="Remember to select a category.";
 
   if(selectTypes!=""){
     inputKeyword = selectTypes + " " + inputKeyword;
