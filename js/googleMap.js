@@ -107,7 +107,7 @@ function busquedaSitios(){
 
   var search=document.getElementById('types').value;
   var inputKeyword=document.getElementById('keyword').value;
-  var alertType=document.getElementById('alertCat').innerHTML="Remember to select a category.";
+  var alertType=document.getElementById('alertPlace').innerHTML="Select a place.";
 
   if(selectTypes!=""){
     inputKeyword = selectTypes + " " + inputKeyword;
