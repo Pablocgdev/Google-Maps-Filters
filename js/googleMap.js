@@ -3,7 +3,7 @@ var searchBox;
 var input;
 var selectTypes;
 var markers = [];
-var maerkersSearch = [];
+var markerSearch = [];
 
 
 function initAutocomplete() {
@@ -100,14 +100,14 @@ function initAutocomplete() {
 function busquedaSitios(){
 
   // Clear old search markers.
-    maerkersSearch.forEach(function(marker) {
+    markerSearch.forEach(function(marker) {
       marker.setMap(null);
     });
-    maerkersSearch = [];
+    markerSearch = [];
 
+  var selectTypes=document.getElementById('types').value;
   var search=document.getElementById('types').value;
   var inputKeyword=document.getElementById('keyword').value;
-  var alertType=document.getElementById('alertPlace').innerHTML="Select a place.";
 
   if(selectTypes!=""){
     inputKeyword = selectTypes + " " + inputKeyword;
@@ -146,7 +146,7 @@ function busquedaSitios(){
       position: place.geometry.location
     })
     // Push them to an array for deleting when refreshing the search.
-    maerkersSearch.push(marker);
+    markerSearch.push(marker);
 
     // Maker info on click.
     google.maps.event.addListener(marker, 'click', function() {
