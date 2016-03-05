@@ -84,6 +84,7 @@ function initAutocomplete() {
         position: place.geometry.location
       }));
 
+
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
@@ -108,7 +109,11 @@ function busquedaSitios(){
   var selectTypes=document.getElementById('types').value;
   var search=document.getElementById('types').value;
   var inputKeyword=document.getElementById('keyword').value;
+  var placeSearch=document.getElementById('pac-input').value;
 
+  if(placeSearch == "" || placeSearch == null){
+    var placeAlert=document.getElementById('alertPlace').innerHTML="Select a place."
+  }
   if(selectTypes!=""){
     inputKeyword = selectTypes + " " + inputKeyword;
   }
