@@ -108,7 +108,9 @@ function busquedaSitios(){
   var selectTypes=document.getElementById('types').value;
   var inputKeyword=document.getElementById('keyword').value;
 
-  inputKeyword = selectTypes + " " + inputKeyword;
+  if(selectTypes!=""){
+    inputKeyword = selectTypes + " " + inputKeyword;
+  }
 
   var radius=document.getElementById('radius').value;
   radius*=1000;
