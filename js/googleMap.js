@@ -110,10 +110,14 @@ function busquedaSitios(){
   var search=document.getElementById('types').value;
   var inputKeyword=document.getElementById('keyword').value;
   var placeSearch=document.getElementById('pac-input').value;
+  var placeAlert=document.getElementById('alertPlace');
 
   if(placeSearch == "" || placeSearch == null){
-    var placeAlert=document.getElementById('alertPlace').innerHTML="Select a place."
+    placeAlert.innerHTML="Select a place.";
+  }else{
+    placeAlert.innerHTML="";
   }
+
   if(selectTypes!=""){
     inputKeyword = selectTypes + " " + inputKeyword;
   }
